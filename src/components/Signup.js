@@ -8,11 +8,11 @@ import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
 import './index.css';
 
 
-export const BackgroundImagePage = () => {
-  return (
-      <div className="bg"></div>
-  );
-}
+// export const BackgroundImagePage = () => {
+//   return (
+//       // <div className="bg"></div>
+//   );
+// }
 
 export default function Signup() {
   const emailRef = useRef()
