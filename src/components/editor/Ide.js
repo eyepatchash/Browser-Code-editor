@@ -1,10 +1,22 @@
 import React, { Component } from 'react'
 import './Ide.css'
+import { Button, Modal, Form } from "react-bootstrap"
 import axios from 'axios'
 import secret from './secret'
 import MonacoEditor from '@monaco-editor/react';
 import {code} from './defaultCode'
-import './index.css'
+import AddFileButton from "./AddFileButton"
+import { useParams, useLocation } from "react-router-dom"
+import { useFolder } from "../../hooks/useFolder"
+import { storage, database } from "../../firebase"
+import { useAuth } from "../../contexts/AuthContext"
+import { faFileDownload } from "@fortawesome/free-solid-svg-icons"
+import { faFileUpload } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Navbar from "./Navbar"
+
+
+
 
 export default class Ide extends Component {
     state={
@@ -12,6 +24,27 @@ export default class Ide extends Component {
         result: 'Submit Code to See Result',
         lang: 'c'
     }
+   
+    downloadTxtFile = () => {
+        const element = document.createElement("a");
+        const file = new Blob([this.state.code],
+            { type: 'text/plain;charset=utf-8' });
+        element.href = URL.createObjectURL(file);
+        element.download = "myFile.c";
+        document.body.appendChild(element);
+        element.click();
+    }
+    UploadTxtFile = () => {
+        const element = document.createElement("a");
+        const { currentUser } = useAuth()
+        const file = new Blob([this.state.code],
+            { type: 'text/plain;charset=utf-8' });
+        const uploadTask = storage
+            .ref(`/files/${currentUser.uid}/`)
+            .put(file)
+    
+    }
+    
 
     onSubmitHandler = (e) => {
         e.preventDefault()
@@ -35,6 +68,8 @@ export default class Ide extends Component {
             .catch(err=>{
                 console.log(err)
             })
+
+    
     }
 
 
@@ -76,7 +111,7 @@ export default class Ide extends Component {
             },
             snippetSuggestions: "inline"
           };
-        console.log(this.state)
+        console.log(this.props.location.aboutprops.currentFolder.currentFolder)
         return (
             <>
             <style type="css">
@@ -86,15 +121,20 @@ export default class Ide extends Component {
         }
         `}
             </style>
+            <Navbar/>
                 <div className="container">
                     <div className="row">
                         <div className="col-12 mt-5">
                         <select id="lang" onChange={(e) => this.onLangSelectHandler(e)}>
-                            {/* <option value="cpp">C++</option> */}
+                         
                             <option value="c">C</option>
-                            {/* <option value="java">Java</option> */}
-                            {/* <option value="python">Python</option> */}
+                           
                         </select>
+                        <Button onClick={this.downloadTxtFile} variant="outline-success" size="sm">
+                            <FontAwesomeIcon icon={faFileDownload} />
+                        </Button>
+                        
+                        <AddFileButton currentFolder={this.props.location.aboutprops.currentFolder.currentFolder} code={this.state.code}/>
                              <p className="lead d-block my-0">Code your code here</p>
                              <div type="text" id="code" className="code">
                              <MonacoEditor

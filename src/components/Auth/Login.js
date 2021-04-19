@@ -1,9 +1,11 @@
 import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
-import { useAuth } from "../contexts/AuthContext"
+import { useAuth } from "../../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
-import Loginimg from "./5-things-that-developers-dislike-doing.svg";
-import "./index.css"
+import Loginimg from "../5-things-that-developers-dislike-doing.svg";
+import "../index.css"
+import CenteredContainer from "./CenteredContainer"
+
 
 export default function Login() {
   const emailRef = useRef()
@@ -29,7 +31,7 @@ export default function Login() {
   }
 
   return (
-    <> <style type="text/css">
+    <CenteredContainer> <style type="text/css">
     {`
 
     
@@ -124,7 +126,7 @@ export default function Login() {
         Need an account?&nbsp;&nbsp; <Link to="/signup" className="link">Sign Up</Link>
       </div>  </Card>
       
-    </>
+    </CenteredContainer>
   )
 }
 
