@@ -23,9 +23,9 @@ export default function Dashboard() {
         <Card>
         <div className="d-flex align-items-center">
           <FolderBreadcrumbs currentFolder={folder} />
-          <AddFileButton currentFolder={folder} />
+          <Idebutton currentFolder={folder} file="" />&nbsp;&nbsp;
           <AddFolderButton currentFolder={folder} />
-          <Idebutton currentFolder={folder}/>
+          
         </div>
         {childFolders.length > 0 && (
           <div className="d-flex flex-wrap">
@@ -43,13 +43,14 @@ export default function Dashboard() {
         {childFolders.length > 0 && childFiles.length > 0 && <hr />}
         {childFiles.length > 0 && (
           <div className="d-flex flex-wrap">
-            {childFiles.map(childFile => (
+            {childFiles.map(childFile => (console.log(childFile),
               <div
                 key={childFile.id}
                 style={{ maxWidth: "250px" }}
                 className="p-2"
               >
-                <File file={childFile} />
+                <File currentFolder={folder} file={childFile} />
+                
               </div>
             ))}
           </div>

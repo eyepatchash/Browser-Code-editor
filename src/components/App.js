@@ -25,6 +25,7 @@ export const BackgroundImagePage = () => {
 
 
 function App() {
+  
   return (<><Router>
           <AuthProvider>
             <Switch>

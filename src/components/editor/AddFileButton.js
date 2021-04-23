@@ -7,17 +7,29 @@ import { storage, database } from "../../firebase"
 import { ROOT_FOLDER } from "../../hooks/useFolder"
 import { v4 as uuidV4 } from "uuid"
 import { ProgressBar, Toast } from "react-bootstrap"
+import { Button, Modal, Form } from "react-bootstrap"
 
 export default function AddFileButton({ currentFolder,code }) {
   const [uploadingFiles, setUploadingFiles] = useState([])
   const { currentUser } = useAuth()
+  const [open, setOpen] = useState(false)
+  const [name, setName] = useState("")
  
+  function openModal() {
+    setOpen(true)
+  }
+
+  function closeModal() {
+    setOpen(false)
+  }
 
   function handleUpload(e) {
+    console.log(name)
+    
     const file = new Blob([code], { type: 'text/plain;charset=utf-8' })
     console.log(currentFolder)
-     console.log(file)
-     file.name="myfile1.c"
+  
+     file.name=name
     if (currentFolder == null || file == null) return
 
     const id = uuidV4()
@@ -88,19 +100,41 @@ export default function AddFileButton({ currentFolder,code }) {
             })
         })
       }
+      
     )
+    closeModal()
   }
 
   return (
     <>
-      <label className="btn btn-outline-success btn-sm m-0 mr-2">
-        <FontAwesomeIcon icon={faFileUpload} />
-        <input
-          // type="file"
-          onClick={handleUpload}
-          style={{ opacity: 0, position: "absolute", left: "-9999px" }}
-        />
-      </label>
+      {/* <label className="btn btn-outline-success btn-sm m-0 mr-2"> */}
+      <Button onClick={openModal} variant="outline-success" size="sm">
+        <FontAwesomeIcon icon={faFileUpload} /> Upload
+      </Button>
+      {/* </label>  */}
+      <Modal show={open} onHide={closeModal}>
+        <Form o>
+          <Modal.Body>
+            <Form.Group>
+              <Form.Label>File Name</Form.Label>
+              <Form.Control
+                type="text"
+                required
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={closeModal}>
+              Close
+            </Button>
+            <Button variant="success" onClick={handleUpload}>
+              Save 
+            </Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
       {uploadingFiles.length > 0 &&
         ReactDOM.createPortal(
           <div

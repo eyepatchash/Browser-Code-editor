@@ -6,10 +6,6 @@ import secret from './secret'
 import MonacoEditor from '@monaco-editor/react';
 import {code} from './defaultCode'
 import AddFileButton from "./AddFileButton"
-import { useParams, useLocation } from "react-router-dom"
-import { useFolder } from "../../hooks/useFolder"
-import { storage, database } from "../../firebase"
-import { useAuth } from "../../contexts/AuthContext"
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons"
 import { faFileUpload } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -18,12 +14,34 @@ import Navbar from "./Navbar"
 
 
 
+
 export default class Ide extends Component {
-    state={
+    
+    constructor(props){
+        super(props);
+        this.state={
         code: code.c,
         result: 'Submit Code to See Result',
-        lang: 'c'
+        lang: 'c',
+        coder:null,
+    };}
+
+    async componentDidMount() {
+        // Simple GET request using fetch
+         await fetch(this.props.location.aboutprops.file.url)
+            .then(response => response.blob())
+            .then(coder => this.setState({ coder}));
+            console.log(this.state.coder)
+            
+        if (this.props.location.aboutprops.file.url== undefined) {return }
+        else{const blob=this.state.coder
+        var text=blob.text()
+        text.then(data => this.setState({ code: data}))}
+        
     }
+    
+      
+    
    
     downloadTxtFile = () => {
         const element = document.createElement("a");
@@ -33,17 +51,23 @@ export default class Ide extends Component {
         element.download = "myFile.c";
         document.body.appendChild(element);
         element.click();
+
+        console.log(this.state.coder)
+        const blob=this.state.coder
+        var text=blob.text()
+        text.then(data => this.setState({ code: data}))
+        
+        
     }
-    UploadTxtFile = () => {
-        const element = document.createElement("a");
-        const { currentUser } = useAuth()
-        const file = new Blob([this.state.code],
-            { type: 'text/plain;charset=utf-8' });
-        const uploadTask = storage
-            .ref(`/files/${currentUser.uid}/`)
-            .put(file)
+    change1 =() => {
+        const blob=this.state.coder
+        var text=blob.text()
+        text.then(data => this.setState({ code: data}))
+        
+    }
     
-    }
+    
+    
     
 
     onSubmitHandler = (e) => {
@@ -100,6 +124,7 @@ export default class Ide extends Component {
 
 
     render() {
+   
         const options = {
             selectOnLineNumbers: true,
             renderIndentGuides: true,
@@ -111,7 +136,10 @@ export default class Ide extends Component {
             },
             snippetSuggestions: "inline"
           };
-        console.log(this.props.location.aboutprops.currentFolder.currentFolder)
+        console.log(this.props.location.aboutprops.currentFolder)
+        // console.log(this.props.location.ap.currentFolder.currentFolder)
+        console.log(this.props.location.aboutprops.file.url)
+       
         return (
             <>
             <style type="css">
@@ -130,11 +158,14 @@ export default class Ide extends Component {
                             <option value="c">C</option>
                            
                         </select>
+                        &nbsp;
+                        &nbsp;
                         <Button onClick={this.downloadTxtFile} variant="outline-success" size="sm">
-                            <FontAwesomeIcon icon={faFileDownload} />
+                            <FontAwesomeIcon icon={faFileDownload} />  Download
                         </Button>
+                        &nbsp;&nbsp;
                         
-                        <AddFileButton currentFolder={this.props.location.aboutprops.currentFolder.currentFolder} code={this.state.code}/>
+                        <AddFileButton currentFolder={this.props.location.aboutprops.currentFolder} code={this.state.code}/>
                              <p className="lead d-block my-0">Code your code here</p>
                              <div type="text" id="code" className="code">
                              <MonacoEditor
@@ -146,6 +177,7 @@ export default class Ide extends Component {
                                 value={this.state.code}
                                 
                                 options={options}
+                                // onClick={this.change()}
                                 onChange={this.onCodeChangeHandler}
                                 editorDidMount={this.editorDidMount}
                             />
