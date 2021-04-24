@@ -1,18 +1,62 @@
-import React from "react"
-import { Navbar, Nav } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import React, { useState}  from "react"
+import { Navbar, Nav ,Button} from "react-bootstrap"
+import { Link ,useHistory} from "react-router-dom"
+import "../index.css"
+import logo  from "../logo.png"
+import { useAuth } from "../../contexts/AuthContext"
+
+
 
 export default function NavbarComponent() {
-  return (
-    <Navbar bg="light" expand="sm">
-      <Navbar.Brand as={Link} to="/">
-        Code Editor
-      </Navbar.Brand>
-      <Nav>
-        <Nav.Link as={Link} to="/user">
-          Profile
-        </Nav.Link>
-      </Nav>
-    </Navbar>
+  const [error, setError] = useState("")
+  const { currentUser, logout } = useAuth()
+  const history = useHistory()
+
+  async function handleLogout() {
+    setError("")
+
+    try {
+      await logout()
+      history.push("/login")
+    } catch {
+      setError("Failed to log out")
+    }
+  }
+  return (<>
+    {/* // <Navbar bg="dark" expanded="sm">
+    //   
+    //   <Navbar.Brand as={Link} to="/">
+    //    <div className="navbar">Code Editor</div> 
+    //   </Navbar.Brand>
+
+    //   <Nav className="ml-auto">
+    //     <Nav.Link as={Link} to="/user">
+    //      <Nav.Item>
+    //        Profile</Nav.Item> 
+    //     </Nav.Link>
+    //   </Nav>
+    // </Navbar> */}
+    <Navbar bg="dark" variant="dark">
+  <Nav className="container-fluid">
+    <Nav>
+      <img className="icon" src={logo} width="55em"/> &nbsp;
+       </Nav>
+    <Nav.Item>
+      <Navbar.Brand as={Link} to="/"><b style={{color:"#9A2A2A" } }>Code Editor</b></Navbar.Brand>
+    </Nav.Item>
+    <Nav.Item>
+      <Nav.Link as={Link} to="/user"><div className="profile"><h4>Profile</h4></div></Nav.Link>
+    </Nav.Item>
+    &nbsp;
+    
+    <Button variant="outline-danger" onClick= {handleLogout}>Log Out</Button>{' '}
+      
+    
+    <Nav.Item className="ml-auto">
+      <Nav.Link><div style={{ color:"#29d863"}}><h4>Happy Coding!</h4></div></Nav.Link>
+    </Nav.Item>
+  </Nav>
+</Navbar>
+</>
   )
 }

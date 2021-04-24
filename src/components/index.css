@@ -1,4 +1,8 @@
 body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -6,15 +10,50 @@ body, html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   
-  background-image: url("bg.jpg");
+  
+    }
+    
+    
+    .login{
+      background-image: url("https://i.pinimg.com/originals/a5/f4/fb/a5f4fb117b65e2a5b624ef09395c4228.png");
     height: 100vh;
     background-position: center;
     background-repeat: repeat-y;
     background-attachment: fixed;
     background-size: cover;
-    height: 100%;
+    height: 100%; 
+
     }
-    
+    .signup{
+    background-image: url("https://wallpaperaccess.com/full/1109805.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%; 
+
+    }
+    .ide{
+    background-image: url("https://images.pexels.com/photos/34088/pexels-photo.jpg?cs=srgb&dl=pexels-negative-space-34088.jpg&fm=jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%; 
+
+    }
+    .home{
+    background-image: url("../eastsleep.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    background-size: cover;
+  
+
+    }
     .btn-flat {
         background-color: black;
         color: white;
@@ -28,4 +67,141 @@ body, html {
         code {
           font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
             monospace;
+        }
+
+        .navbar {
+          color:white;
+        }
+        img{
+          border-radius: 50%
+        }
+        .profile{
+          justify-content: flex-end;
+          color:#AFEEEE
+
+        }
+        .textarea{
+          background-color:rgba(37, 36, 36, 0.541);
+          color:white
+        }
+        
+        .opa{
+          background-color:rgba(216, 203, 203, 0);
+          color:white
+         
+        }
+        .inputr{
+          background: none;
+          outline: none;
+          border: 0em;
+          border-bottom:2px solid rgb(45, 212, 59);
+          width: 25em;
+          color:white;
+         
+          /* background-color:black */
+        }
+        .inputr1{
+          background: none;
+          outline: none;
+          border: 0em;
+          border-bottom:2px solid rgb(45, 212, 59);
+          width: 25em;
+          color:white;
+         
+          /* background-color:black */
+        }
+        .inputr2{
+          background: none;
+          outline: none;
+          border: 0em;
+          border-bottom:2px solid rgb(45, 212, 59);
+          width: 25em;
+          color:white;
+         
+          /* background-color:black */
+        }
+        .inputr3{
+          background: none;
+          outline: none;
+          border: 0em;
+          border-bottom:2px solid rgb(45, 212, 59);
+          width: 25em;
+          color:white;
+         
+          /* background-color:black */
+        }
+        .inputr4{
+          background: none;
+          outline: none;
+          border: 0em;
+          border-bottom:2px solid rgb(45, 212, 59);
+          width: 25em;
+          color:white;
+         
+          /* background-color:black */
+        }
+        
+        .label{
+          
+          position:absolute;
+          left:568px;
+          transition:0.5s;
+          pointer-events:none;
+          font-size: 1.1em;
+          
+          
+        }
+        
+        .inputr:focus ~ label,.inputr:valid ~ label {
+        top: 380px;
+        left:568px;
+        color: #03a9f4;
+        font-size: 0.82rem;
+        }
+        
+        .label{
+          
+          position:absolute;
+          left:568px;
+          transition:0.5s;
+          pointer-events:none;
+          font-size: 1.1em;
+          
+          
+        }
+        .inputr1:valid ~ label,
+        .inputr1:focus  ~ label {
+        top: 450px;
+        left:568px;
+        color: #03a9f4;
+        font-size: 0.82rem;
+        }
+        .inputr2:valid ~ label,
+        .inputr2:focus  ~ label {
+        top: 370px;
+        left:568px;
+        color: #03a9f4;
+        font-size: 0.82rem;
+        }
+        .inputr3:valid ~ label,
+        .inputr3:focus  ~ label {
+        top: 438px;
+        left:568px;
+        color: #03a9f4;
+        font-size: 0.82rem;
+        }
+        .inputr4:valid ~ label,
+        .inputr4:focus  ~ label {
+        top: 503px;
+        left:568px;
+        color: #03a9f4;
+        font-size: 0.82rem;
+        }
+        .mode{
+          right:0em;
+        }
+        .rowC{display:flex; flex-direction:row;}
+        img { /* svg on an img tag */
+          -webkit-filter: invert(.75); /* safari 6.0 - 9.0 */
+                  filter: invert(.75);
         }

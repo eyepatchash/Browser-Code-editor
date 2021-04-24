@@ -44,7 +44,35 @@ export default function UpdateProfile() {
   }
 
   return (
-    <CenteredContainer>
+    
+    <CenteredContainer><style type="text/css">{
+      `.link{
+      
+        color: black;
+        text-decoration: none;
+        position: relative;
+      }
+      
+      .link::after{
+        content: "";
+        background: white;
+        mix-blend-mode: exclusion;
+        width: calc(90% + 20px);
+        height: 0;
+        position: absolute;
+        bottom: -2px;
+        left: -10px;
+        transition: all .3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+      }
+      
+      .link:hover::after{
+        height: calc(100% + 8px)
+      }
+
+
+    `
+
+    }</style>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Update Profile</h2>
@@ -75,15 +103,17 @@ export default function UpdateProfile() {
                 placeholder="Leave blank to keep the same"
               />
             </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
+            <div className="text-center"><Button disabled={loading}  className="w-100" className=" w-50 justify-content-center" variant="dark" type="submit">
               Update
-            </Button>
+            </Button></div>
           </Form>
         </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
-        <Link to="/">Cancel</Link>
+        <div className="w-100 text-center mt-2 mb-2">
+        <Link to="/" className="link">Cancel</Link>
       </div>
+      </Card>
+      
     </CenteredContainer>
+    
   )
 }

@@ -31,6 +31,7 @@ export default function Login() {
   }
 
   return (
+    <div className="login">
     <CenteredContainer> <style type="text/css">
     {`
 
@@ -46,14 +47,14 @@ export default function Login() {
     }
     .link{
       
-      color: black;
+      color: white;
       text-decoration: none;
       position: relative;
     }
     
     .link::after{
       content: "";
-      background: white;
+      
       mix-blend-mode: exclusion;
       width: calc(90% + 20px);
       height: 0;
@@ -68,15 +69,16 @@ export default function Login() {
     }
     .link1{
       
-      color: black;
+      color: white;
       text-decoration: none;
       position: relative;
     }
     
     .link1::after{
       content: "";
-      background: white;
-      mix-blend-mode: exclusion;
+      color:white;
+      
+      mix-blend-mode: light ;
       width: calc(90% + 30px);
       height: 0;
       position: absolute;
@@ -97,36 +99,38 @@ export default function Login() {
     
     `}
   </style>
-      <Card>
-        <Card.Body>
-          <div className=" d-flex justify-content-center"><img src={Loginimg} width="250" className=""/></div>
+      <div className="opa">
+        
+          <div className=" d-flex justify-content-center"><img src={Loginimg} width="250" /></div>
           
-          <h2 className="text-center mb-4">Log In</h2><img className="image ">
+          <h1 className="text-center mb-4">Log In</h1><img className="image ">
           </img>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
+              <Form.Label></Form.Label>
+             <div><input type="email" ref={emailRef} required  className="inputr"/><label className="label"><b>Email</b></label></div>
+              
             </Form.Group>
             <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" ref={passwordRef} required />
+              <Form.Label></Form.Label>
+              <div><input type="password" ref={passwordRef} required  className="inputr1"/><label className="label"><b>Password</b></label></div>
             </Form.Group>
-            <div className="text-center"><Button disabled={loading} className="w-100" className=" w-50 justify-content-center" type="submit" variant="flat" type="submit">
-              Log In
+            <div className="text-center"><Button disabled={loading} className="w-100 " className=" w-50 justify-content-center" type="submit" variant="outline-success" type="submit">
+              <b>Log In</b>
             </Button></div>
           </Form>
           <div className="w-100 text-center mt-3">
             <Link to="/forgot-password" className="link1" >Forgot Password?</Link>
           </div>
-        </Card.Body>
+        
     
       <div className= "  w-100 text-center mt-2">
         Need an account?&nbsp;&nbsp; <Link to="/signup" className="link">Sign Up</Link>
-      </div>  </Card>
-      
+      </div>  
+      </div>
     </CenteredContainer>
+    </div>
   )
 }
 

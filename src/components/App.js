@@ -2,7 +2,8 @@ import React from "react"
 import Signup from "./Auth/Signup"
 import { Container } from "react-bootstrap"
 import { AuthProvider } from "../contexts/AuthContext"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router,  Route } from "react-router-dom"
+import {useLocation,Switch } from "react-router-dom"
 import Dashboard from "./editor/Dashboard"
 import Profile from "./Auth/Profile"
 import Login from "./Auth/Login"
@@ -11,24 +12,23 @@ import ForgotPassword from "./Auth/ForgotPassword"
 import UpdateProfile from "./Auth/UpdateProfile"
 import ide from "./editor/Ide";
 import './index.css';
-import Navbar from "./editor/navbar1"
+import { AnimatePresence } from "framer-motion";
 
 
 
 
-export const BackgroundImagePage = () => {
-  return (
-      <div className="bg"></div>
-  );
-}
+
 
 
 
 function App() {
   
-  return (<><Router>
+  
+  return (<>
+  <AnimatePresence>
+  <Router>
           <AuthProvider>
-            <Switch>
+            <Switch >
               <PrivateRoute exact path="/" component={Dashboard} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <PrivateRoute path="/user" component={Profile} />
@@ -43,15 +43,11 @@ function App() {
       
           </AuthProvider>
         </Router>
-    {/* <Router><Navbar />
-        <Switch>
-          <Route path='/ide' exact component={ide} />
-          <Route path='/login' component={Login} />
-          <Route path='/signup' component={Signup} />
-        </Switch></Router> */}
-    
-    
+  
+    </AnimatePresence>
+   
     </>
+  
   )
 }
 

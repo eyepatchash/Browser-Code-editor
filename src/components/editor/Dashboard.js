@@ -17,16 +17,20 @@ export default function Dashboard() {
   const { folder, childFolders, childFiles } = useFolder(folderId, state.folder)
 
   return (
-    <>
-      <Navbar />
-      <Container fluid>
-        <Card>
-        <div className="d-flex align-items-center">
+    <div className="home">
+      <div>
+  
+      <Navbar />&nbsp;
+      <Container fluid >
+        
+        <div className="d-flex align-items-center ">
           <FolderBreadcrumbs currentFolder={folder} />
           <Idebutton currentFolder={folder} file="" />&nbsp;&nbsp;
           <AddFolderButton currentFolder={folder} />
           
         </div>
+        {childFolders.length > 0 && (<h4 style={{color: "#17a2b8"}} > Projects</h4>)}
+        {childFolders.length == 0 && (<h4 style={{color: "#B22222"}}> Add Project</h4>)}
         {childFolders.length > 0 && (
           <div className="d-flex flex-wrap">
             {childFolders.map(childFolder => (
@@ -41,8 +45,12 @@ export default function Dashboard() {
           </div>
         )}
         {childFolders.length > 0 && childFiles.length > 0 && <hr />}
+        {childFolders.length === 0 || childFiles.length === 0 && <hr />}
+        {childFiles.length > 0 && (<h4 style={{color: "#17a2b8"}} > Files</h4>)}
+        {childFiles.length === 0 && (<h4 style={{color:"#B22222"}}>Add  File</h4>)}
         {childFiles.length > 0 && (
           <div className="d-flex flex-wrap">
+            
             {childFiles.map(childFile => (console.log(childFile),
               <div
                 key={childFile.id}
@@ -54,8 +62,10 @@ export default function Dashboard() {
               </div>
             ))}
           </div>
-        )}</Card>
-      </Container>
-    </>
+        )}
+      </Container></div>
+      </div>
+      
+    
   )
 }

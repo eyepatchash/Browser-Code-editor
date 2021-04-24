@@ -22,25 +22,52 @@ export default function Profile() {
 
   return (
     <CenteredContainer>
+      <style type="text/css">{
+      `.link{
+      
+        color: black;
+        text-decoration: none;
+        position: relative;
+      }
+      
+      .link::after{
+        content: "";
+        background: white;
+        mix-blend-mode: exclusion;
+        width: calc(90% + 18px);
+        height: 0;
+        position: absolute;
+        bottom: -1px;
+  
+        left: -8px;
+        transition: all .3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+      }
+      
+      .link:hover::after{
+        height: calc(100% + 8px)
+      }
+
+
+    `
+
+    }</style>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <strong>Email:</strong> {currentUser.email}
-          <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
+          <Link to="/update-profile" className="btn btn-dark w-100 mt-3" >
             Update Profile
-          </Link>
-          <Link to="/ide" className="btn btn-primary w-100 mt-3">
-            ide
-          </Link>
-
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
-        <Button variant="link" onClick={handleLogout}>
+          </Link>&nbsp;
+          <div className="w-100 text-center mt-2">
+        <Button variant="link" onClick={handleLogout} className="link" >
           Log Out
         </Button>
       </div>
+
+        </Card.Body>
+      </Card>
+      
     </CenteredContainer>
   )
 }

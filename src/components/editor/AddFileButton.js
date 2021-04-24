@@ -108,7 +108,7 @@ export default function AddFileButton({ currentFolder,code }) {
   return (
     <>
       {/* <label className="btn btn-outline-success btn-sm m-0 mr-2"> */}
-      <Button onClick={openModal} variant="outline-success" size="sm">
+      <Button onClick={openModal} variant="info" size="sm">{''}
         <FontAwesomeIcon icon={faFileUpload} /> Upload
       </Button>
       {/* </label>  */}

@@ -43,69 +43,31 @@ export default function Signup() {
     setLoading(false)
   }
 
-  return (
+  return (<div className="signup">
     <CenteredContainer>
-    <style type="text/css">
-    {`
-
-    
-    .btn-flat {
-      background-color: black;
-      color: white;
-    }
-
-    .btn-xxl {
-      padding: 1rem 1.5rem;
-      font-size: 1.5rem;
-    }
-
-    .link{
-      
-      color: black;
-      text-decoration: none;
-      position: relative;
-    }
-    
-    .link::after{
-      content: "";
-      background: white;
-      mix-blend-mode: exclusion;
-      width: calc(90% + 20px);
-      height: 0;
-      position: absolute;
-      bottom: -2px;
-      left: -10px;
-      transition: all .3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-    }
-    
-    .link:hover::after{
-      height: calc(100% + 8px)
-    }
-
-    `}
-  </style>
   
-  <div className="d-flex bd-highlight example-parent " classname="bg">
+  
+  <div className="d-flex bd-highlight example-parent " >
       <div className=" w-100 col-example">
-      <Card>
+      <div className="opa">
         <Card.Body>
           <div className="d-flex justify-content-center"><img src={loginImg} width="180"  height=""/></div>
-          <h2 className="text-center mb-4">Sign Up</h2>
+          <h1 className="text-center mb-4">Sign Up</h1>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
+              <Form.Label></Form.Label>
+              <div><input type="email" ref={emailRef} required  className="inputr2"/><label className="label"><b>&nbsp;&nbsp;&nbsp;&nbsp;Email</b></label></div>
             </Form.Group>
             <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" ref={passwordRef} required />
+              <Form.Label></Form.Label>
+              <div><input type="password" ref={passwordRef} required  className="inputr3"/><label className="label"><b>&nbsp;&nbsp;&nbsp;&nbsp;Password</b></label></div>
             </Form.Group>
             <Form.Group id="password-confirm">
-              <Form.Label>Password Confirmation</Form.Label>
-              <Form.Control type="password" ref={passwordConfirmRef} required />
+              <Form.Label></Form.Label>
+              <div> <input type="password" ref={passwordConfirmRef} required  className="inputr4"/><label className="label"><b>&nbsp;&nbsp;&nbsp;&nbsp;Password Confirmation</b></label></div>
             </Form.Group>
-            <div className="text-center"><Button disabled={loading} className="w-50" type="submit" variant="flat"  >
+            <div className="text-center"><Button disabled={loading} className="w-50" type="submit" variant="outline-success"  >
               Sign Up
             </Button></div>
             {/* <div className="text-center">
@@ -116,7 +78,7 @@ export default function Signup() {
         <div className="w-100 text-center mt-2">
         Already have an account?&nbsp;&nbsp; <Link to="/login"className="link">Log In</Link>
       </div>
-      </Card>
+      </div>
       </div>
     {/* <Link to="/login" className="w-25 text-center min-vh-100 justify-content-between" text="login"><Card className="">Login</Card></Link> */}
       
@@ -124,6 +86,6 @@ export default function Signup() {
       
       </div>
       
-    </CenteredContainer>
+    </CenteredContainer></div>
   )
 }

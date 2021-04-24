@@ -10,10 +10,12 @@ export default function FolderBreadcrumbs({ currentFolder }) {
   return (
     <Breadcrumb
       className="flex-grow-1"
-      listProps={{ className: "bg-white pl-0 m-0" }}
+      listProps={{ className: "bg-transparent pl-0 m-0" }}
+    
     >
       {path.map((folder, index) => (
         <Breadcrumb.Item
+        text="#17a2b8"
           key={folder.id}
           linkAs={Link}
           linkProps={{

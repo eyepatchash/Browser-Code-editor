@@ -28,7 +28,7 @@ export default function File({  currentFolder,file }) {
             }
   
           }
-        } as={Link} variant="outline-success"
+        } as={Link} variant="outline-info"
          ><FontAwesomeIcon icon={faFileUpload} className="mr-2 " />
         New File
   

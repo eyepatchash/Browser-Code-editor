@@ -7,9 +7,11 @@ import MonacoEditor from '@monaco-editor/react';
 import {code} from './defaultCode'
 import AddFileButton from "./AddFileButton"
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons"
-import { faFileUpload } from "@fortawesome/free-solid-svg-icons"
+import { faSun } from "@fortawesome/free-solid-svg-icons"
+import { faMoon } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Navbar from "./Navbar"
+import cicon from "../../cicon.png"
 
 
 
@@ -21,9 +23,10 @@ export default class Ide extends Component {
         super(props);
         this.state={
         code: code.c,
-        result: 'Submit Code to See Result',
+        result: '',
         lang: 'c',
         coder:null,
+        vs:"vs-light"
     };}
 
     async componentDidMount() {
@@ -121,6 +124,20 @@ export default class Ide extends Component {
             code: code[lang]
         })
     }
+    darkmode = () => {
+        
+        this.setState({
+            
+            vs: "vs-dark"
+        })
+    }
+    lightmode = () => {
+        
+        this.setState({
+            
+            vs: "vs-light"
+        })
+    }
 
 
     render() {
@@ -131,6 +148,7 @@ export default class Ide extends Component {
             colorDecorators: true,
             cursorBlinking: "blink",
             autoClosingQuotes: "always",
+            opacity:0.5,
             find: {
                 autoFindInSelection: "always"
             },
@@ -141,7 +159,7 @@ export default class Ide extends Component {
         console.log(this.props.location.aboutprops.file.url)
        
         return (
-            <>
+            <><div className="ide">
             <style type="css">
             {`.code {
           font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -153,27 +171,34 @@ export default class Ide extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 mt-5">
-                        <select id="lang" onChange={(e) => this.onLangSelectHandler(e)}>
+                        
                          
-                            <option value="c">C</option>
+                           <img src={cicon}/>
                            
-                        </select>
+                        
                         &nbsp;
                         &nbsp;
-                        <Button onClick={this.downloadTxtFile} variant="outline-success" size="sm">
+                        <Button onClick={this.downloadTxtFile} variant="success" size="sm">
                             <FontAwesomeIcon icon={faFileDownload} />  Download
                         </Button>
                         &nbsp;&nbsp;
                         
-                        <AddFileButton currentFolder={this.props.location.aboutprops.currentFolder} code={this.state.code}/>
-                             <p className="lead d-block my-0">Code your code here</p>
+                        
+                        <AddFileButton currentFolder={this.props.location.aboutprops.currentFolder} code={this.state.code}/> 
+                        {this.state.vs == "vs-light" && (<div  style={{ marginLeft: "1060px" }}><Button variant="dark" onClick={this.darkmode} className="ml-90" >
+                                <FontAwesomeIcon icon={faMoon}/>
+                            </Button></div>)}
+                        {this.state.vs == "vs-dark" && (<div  style={{ marginLeft: "1060px" }}><Button variant="light" onClick={this.lightmode} className="ml-90" >
+                                <FontAwesomeIcon icon={faSun}/>
+                            </Button></div>)}
+                        
                              <div type="text" id="code" className="code">
                              <MonacoEditor
                                 width="100%"
                                 
                                 height="30em"
                                 language={this.state.lang}
-                                theme="vs-dark"
+                                theme={this.state.vs}
                                 value={this.state.code}
                                 
                                 options={options}
@@ -184,19 +209,21 @@ export default class Ide extends Component {
                              </div>
                         </div>
                         <div className="col-12 mt-3">
-                            <p className="lead d-block my-0">Provide Input</p>
-                             <textarea type="text" id="input" value={this.state.input} onChange={this.onInputChangeHandler}>
+                            <p className="lead d-block my-0" style={{color:"white"}}><b>Provide Input</b></p>
+                             <textarea type="text" id="input" value={this.state.input} onChange={this.onInputChangeHandler }   className="textarea">
                              </textarea>
                         </div>
                     </div>
                     <button className="btn btn-success" onClick={this.onSubmitHandler}>Submit Code</button>
                     <div className="row ">
-                        <div className="col-12 my-5">
-                             <textarea type="text" id="result" value={this.state.result} disabled={true}>
+                    {this.state.result != "" && (<div className="col-12 my-5">
+                             <textarea type="text" id="result" value={this.state.result} disabled={true} className="textarea" >
                              </textarea>
-                        </div>
+                        </div>)}
+                        &nbsp;
+                        
                     </div>
-                </div>
+                </div></div>
             </>
         )
     }

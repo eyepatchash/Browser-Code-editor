@@ -11,7 +11,7 @@ export default function Folder({ folder }) {
         pathname: `/folder/${folder.id}`,
         state: { folder: folder },
       }}
-      variant="outline-dark"
+      variant="outline-light"
       className="text-truncate w-100"
       as={Link}
     >
