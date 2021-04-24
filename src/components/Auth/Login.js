@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
-import Loginimg from "../5-things-that-developers-dislike-doing.svg";
-import "../index.css"
+import Loginimg from "../login.jpg";
+import "../index.scss"
 import CenteredContainer from "./CenteredContainer"
 
 
@@ -101,7 +101,7 @@ export default function Login() {
   </style>
       <div className="opa">
         
-          <div className=" d-flex justify-content-center"><img src={Loginimg} width="250" /></div>
+          <div className=" d-flex justify-content-center"><img classname="img1" src={Loginimg} width="250" /></div>
           
           <h1 className="text-center mb-4">Log In</h1><img className="image ">
           </img>

@@ -1,7 +1,7 @@
 import React, { useState}  from "react"
 import { Navbar, Nav ,Button} from "react-bootstrap"
 import { Link ,useHistory} from "react-router-dom"
-import "../index.css"
+import "../index.scss"
 import logo  from "../logo.png"
 import { useAuth } from "../../contexts/AuthContext"
 

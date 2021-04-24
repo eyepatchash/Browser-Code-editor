@@ -11,7 +11,7 @@ import PrivateRoute from "./Auth/PrivateRoute"
 import ForgotPassword from "./Auth/ForgotPassword"
 import UpdateProfile from "./Auth/UpdateProfile"
 import ide from "./editor/Ide";
-import './index.css';
+import './index.scss';
 import { AnimatePresence } from "framer-motion";
 
 

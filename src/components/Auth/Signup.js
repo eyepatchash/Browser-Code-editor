@@ -4,7 +4,7 @@ import {useAuth}  from "../../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
 import loginImg from "../70259506.svg";
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
-import '../index.css';
+import '../index.scss';
 import CenteredContainer from "./CenteredContainer"
 
 
@@ -51,8 +51,8 @@ export default function Signup() {
       <div className=" w-100 col-example">
       <div className="opa">
         <Card.Body>
-          <div className="d-flex justify-content-center"><img src={loginImg} width="180"  height=""/></div>
-          <h1 className="text-center mb-4">Sign Up</h1>
+          <div className="d-flex justify-content-center" ><img src={loginImg} width="180"  height=""/></div>
+          <h1 className="text-center mb-4"><b>Sign Up</b></h1>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
