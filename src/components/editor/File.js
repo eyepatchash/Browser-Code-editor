@@ -68,11 +68,11 @@ Open
       </Button>
       
       <Modal show={open} onHide={closeModal}>
-      <button 
+      
   
->
+
   Link Copied
-</button>
+
       </Modal>
      
 
