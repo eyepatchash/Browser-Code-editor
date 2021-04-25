@@ -11,6 +11,9 @@ export default function NavbarComponent() {
   const [error, setError] = useState("")
   const { currentUser, logout } = useAuth()
   const history = useHistory()
+  let user = useAuth().currentUser;
+  var name = user.email.substring(0,user.email.lastIndexOf("@"));
+
 
   async function handleLogout() {
     setError("")
@@ -51,9 +54,11 @@ export default function NavbarComponent() {
     
     <Button variant="outline-danger" onClick= {handleLogout}>Log Out</Button>{' '}
       
-    
+  
     <Nav.Item className="ml-auto">
-      <Nav.Link><div style={{ color:"#29d863"}}><h4>Happy Coding!</h4></div></Nav.Link>
+      <h6 style={{ color:"#29d863"}}>Happy Coding!, <em style={{color:"yellow"}}>{name}</em></h6>
+      
+
     </Nav.Item>
   </Nav>
 </Navbar>
